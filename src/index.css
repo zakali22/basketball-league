@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+a.active {
+  font-weight: 700;
+}
+
 .container {
   position: relative;
   max-width: 1000px;
@@ -96,6 +100,10 @@ a {
   padding: 0;
 }
 
+.info-list:first-of-type {
+  margin-right: 80px;
+}
+
 .info-list li {
   list-style-type: none;
   font-size: 33px;
@@ -105,6 +113,7 @@ a {
 .info-list div {
   font-size: 24px;
   font-weight: 300;
+  text-transform: capitalize;
 }
 
 .sidebar-list {
@@ -116,6 +125,7 @@ a {
 
 .sidebar-list a {
   line-height: 25px;
+  text-transform: uppercase;
 }
 
 .sidebar-instruction {
