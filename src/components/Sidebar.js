@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types"
-import {Link, withRouter} from "react-router-dom"
+import {withRouter} from "react-router-dom"
+import CustomLink from "./CustomLink"
 
 const Sidebar = (props) => {
   console.log(props)
@@ -11,12 +12,14 @@ const Sidebar = (props) => {
         <nav className="sidebar-list">
           {
             props.list.map(({name}) => (
-              <Link key={name} to={{
-                pathname: `${props.match.url}/${name.split(' ').join('-')}`,
-                state: {
-                  players: props.list
-                }
-              }}>{name}</Link>
+              <CustomLink 
+                key={name} 
+                to={{
+                  pathname: `${props.match.url}/${name.split(' ').join('-')}`,
+                  state: {
+                    players: props.list
+                  }
+                }}>{name}</CustomLink>
             ))
           }
         </nav>
