@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import {Link} from "react-router-dom"
+import {Link, Route, Switch} from "react-router-dom"
 import {getPlayers} from "../api"
+
+import Player from "./Player"
 
 export default class Players extends Component {
 	state = {
@@ -25,13 +27,21 @@ export default class Players extends Component {
 					<nav className="sidebar-list">
 						{
 							this.state.players.map(({name}) => (
-								<Link key={name} to={`${this.props.match.url}/${name.split(' ').join('-')}`} cl>{name}</Link>
+								<Link key={name} to={{
+									pathname: `/players/${name.split(' ').join('-')}`,
+									state: {
+										players: this.state.players
+									}
+								}}>{name}</Link>
 							))
 						}
 					</nav>
 				</div>
 				<div className="panel">
-					<h2 className="header">Player</h2>
+					<Switch>
+						<Route path={`/players/:playerId`} exact render={(routeProps) => <Player {...routeProps} />} />
+						<Route render={() => <h2>Select a player</h2>} />
+					</Switch>
 				</div>
 			</div>
 		)
