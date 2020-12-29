@@ -116,6 +116,7 @@ a {
 
 .sidebar-list a {
   line-height: 25px;
+  text-transform: uppercase;
 }
 
 .sidebar-instruction {

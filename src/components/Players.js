@@ -20,14 +20,16 @@ export default class Players extends Component {
 	render() {
 		return (
 			<div className="container row two-column">
-				<nav className="sidebar-list">
+				<div className="">
 					<h3 className="header">Players</h3>
-					{
-						this.state.players.map(({name}) => {
-							<Link key={name} to={`${this.props.match.url}/${name.split(' ').join('-')}`}>{name}</Link>
-						})
-					}
-				</nav>
+					<nav className="sidebar-list">
+						{
+							this.state.players.map(({name}) => (
+								<Link key={name} to={`${this.props.match.url}/${name.split(' ').join('-')}`} cl>{name}</Link>
+							))
+						}
+					</nav>
+				</div>
 				<div className="panel">
 					<h2 className="header">Player</h2>
 				</div>
