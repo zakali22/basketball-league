@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 const Navbar = () => (
-    <div className="row navbar">
+    <div className="container row navbar">
         <Link to="/">Home</Link>
         <nav className="nav-links">
             <Link to="/players">Players</Link>
