@@ -100,10 +100,6 @@ a.active {
   padding: 0;
 }
 
-.info-list:first-of-type {
-  margin-right: 80px;
-}
-
 .info-list li {
   list-style-type: none;
   font-size: 33px;
