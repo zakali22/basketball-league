@@ -3,10 +3,13 @@ import PropTypes from "prop-types"
 import {Link} from "react-router-dom"
 import TeamLogo from "./TeamLogo"
 import {getArticle} from "../api"
+import Loading from "./Loading"
+
 
 class ArticleSummary extends Component {
   state = {
-    article: null
+    article: null,
+    loading: true
   }
 
   componentDidMount(){
@@ -22,20 +25,27 @@ class ArticleSummary extends Component {
   updateArticle = () => {
     let {teamId, articleId} = this.props.match.params
     this.setState({
-      article: null
+      article: null,
+      loading: true
     })
 
     getArticle(teamId, articleId).then(res => {
       this.setState({
         article: res
+      }, () => {
+        window.setTimeout(() => {
+          this.setState({
+            loading: false
+          })
+        }, 1000)
       })
     })
 
   }
 
   render() {
-    const {article} = this.state;
-    if(!article) return <h2>Loading</h2>
+    const {article, loading} = this.state;
+    if(loading) return <Loading />
     return (
       <div className="article" style={{width: "100%"}}>
         <h3 className="header article-title">{article.title}</h3>
