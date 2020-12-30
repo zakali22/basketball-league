@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import {Link} from "react-router-dom"
+import {Link, Route, Switch} from "react-router-dom"
 import {getPlayers} from "../api"
+
+import Player from "./Player"
+import Sidebar from "./Sidebar"
 
 export default class Players extends Component {
 	state = {
@@ -19,19 +22,12 @@ export default class Players extends Component {
 
 	render() {
 		return (
-			<div className="container row two-column">
-				<nav className="sidebar-list">
-					<h3 className="header">Players</h3>
-					{
-						this.state.players.map(({name}) => {
-							<Link key={name} to={`${this.props.match.url}/${name.split(' ').join('-')}`}>{name}</Link>
-						})
-					}
-				</nav>
-				<div className="panel">
-					<h2 className="header">Player</h2>
-				</div>
-			</div>
+			<Sidebar title="Players" list={this.state.players} >
+					<Switch>
+						<Route path={`/players/:playerId`} exact render={(routeProps) => <Player {...routeProps} />} />
+						<Route render={() => <h2>Select a player</h2>} />
+					</Switch>
+			</Sidebar>
 		)
 	}
 }
