@@ -5,6 +5,7 @@ import Players from "./Players"
 import Player from "./Player"
 import Teams from "./Teams"
 import Navbar from "./Navbar"
+import Team from "./Team"
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/players" component={Players} />
-        <Route path="/teams" exact component={Teams} />
+        <Route path="/teams" component={Teams} />
+        <Route path="/:teamId" component={Team} />
         <Route render={() => <h2 className="large-header">404 page not found.</h2>} />
       </Switch>
     </React.Fragment>

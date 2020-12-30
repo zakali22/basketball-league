@@ -11,16 +11,27 @@ const Sidebar = (props) => {
         <h3 className="header">{props.title}</h3>
         <nav className="sidebar-list">
           {
-            props.list.map(({name}) => (
-              <CustomLink 
-                key={name} 
+            props.list.map((item) => {
+              return props.type === 'player' ? (
+                <CustomLink 
+                key={item.name} 
                 to={{
-                  pathname: `${props.match.url}/${name.split(' ').join('-')}`,
+                  pathname: `${props.match.url}/${item.name.split(' ').join('-')}`,
                   state: {
-                    players: props.list
+                    list: props.list
                   }
-                }}>{name}</CustomLink>
-            ))
+                }}>{item.name}</CustomLink>
+              ) : (
+                <CustomLink 
+                key={item} 
+                to={{
+                  pathname: `${props.match.url}/${item.split(' ').join('-')}`,
+                  state: {
+                    list: props.list
+                  }
+                }}>{item}</CustomLink>
+              )
+            })
           }
         </nav>
       </div>

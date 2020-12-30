@@ -19,7 +19,7 @@ class Player extends Component {
 
   updatePlayer = () => {
     let playerId = this.props.match.params.playerId
-    let player = this.props.location.state.players.find(player => player.name.split(' ').join('-') === playerId)
+    let player = this.props.location.state.list.find(player => player.name.split(' ').join('-') === playerId)
 
     this.setState({
       player
