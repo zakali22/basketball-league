@@ -35,7 +35,7 @@ class Player extends Component {
         <h2 className="medium-header">{player.name}</h2>
         <h3 className="header">#{player.number}</h3>
         <div className="row">
-          <ul className="info-list">
+          <ul className="info-list" style={{marginRight: "100px"}}>
             <li>
               Team
               <div>
