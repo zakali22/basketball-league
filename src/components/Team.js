@@ -42,6 +42,7 @@ class Team extends Component {
   render() {
     const {team, teamArticles} = this.state;
     if(!team) return <h2>Loading</h2>
+    console.log(this.props.match.url)
     return (
       <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
         <TeamLogo id={team.id} className="center"/>
