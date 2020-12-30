@@ -4,6 +4,7 @@ import {getTeamsArticles} from "../api"
 
 import ArticleSummary from "./ArticleSummary"
 import Sidebar from "./Sidebar"
+import Loading from "./Loading"
 
 export default class Articles extends Component {
 	state = {
@@ -21,7 +22,7 @@ export default class Articles extends Component {
 
 	render() {
     const {articles} = this.state;
-    if(!articles) return <h3>Loading</h3>
+    if(!articles) return <Loading />
 
 		return (
 			<Sidebar title="Articles" list={this.state.articles} type="articles">
