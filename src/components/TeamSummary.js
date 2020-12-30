@@ -3,10 +3,12 @@ import PropTypes from "prop-types"
 import {Link} from "react-router-dom"
 import {getTeam} from "../api"
 import TeamLogo from "./TeamLogo"
+import Loading from "./Loading"
 
 class TeamSummary extends Component {
   state = {
-    team: null
+    team: null,
+    loading: true
   }
 
   componentDidMount(){
@@ -23,20 +25,27 @@ class TeamSummary extends Component {
     let teamId = this.props.match.params.teamId
 
     this.setState({
-      team: null
+      team: null,
+      loading: true
     })
 
     getTeam(teamId).then(res => {
       console.log(res)
       this.setState({
         team: res
+      }, () => {
+        window.setTimeout(() => {
+          this.setState({
+            loading: false
+          })
+        }, 1000)
       })
     })
   }
 
   render() {
-    const {team} = this.state;
-    if(!team) return <h2>Loading</h2>
+    const {team, loading} = this.state;
+    if(loading) return <Loading />
     return (
       <div style={{width: "100%"}}>
         <TeamLogo id={team.id} className="center"/>
