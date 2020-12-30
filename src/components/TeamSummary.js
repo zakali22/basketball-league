@@ -22,6 +22,10 @@ class TeamSummary extends Component {
   updateTeam = () => {
     let teamId = this.props.match.params.teamId
 
+    this.setState({
+      team: null
+    })
+
     getTeam(teamId).then(res => {
       console.log(res)
       this.setState({
