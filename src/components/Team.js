@@ -4,11 +4,13 @@ import {Link} from "react-router-dom"
 import {getTeam, getTeamsArticles} from "../api"
 import TeamLogo from "./TeamLogo"
 import moment from "moment"
+import Loading from "./Loading"
 
 class Team extends Component {
   state = {
     team: null,
-    teamArticles: null
+    teamArticles: null,
+    loading: true
   }
 
   componentDidMount(){
@@ -24,30 +26,31 @@ class Team extends Component {
   updateTeam = () => {
     let teamId = this.props.match.params.teamId
 
-    getTeam(teamId).then(res => {
-      console.log(res)
+    this.setState({
+      loading: true
+    })
+
+    Promise.all([
+      getTeam(teamId),
+      getTeamsArticles(teamId)
+    ]).then(res => {
       this.setState({
-        team: res
-      }, () => {
-        getTeamsArticles(teamId).then(res => {
-          console.log(res)
-          this.setState({
-            teamArticles: res
-          })
-        })
+        team: res[0],
+        teamArticles: res[1],
+        loading: false
       })
     })
   }
 
   render() {
-    const {team, teamArticles} = this.state;
-    if(!team) return <h2>Loading</h2>
+    const {team, teamArticles, loading} = this.state;
+    if(loading) return <Loading />
     console.log(this.props.match.url)
     return (
       <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
         <TeamLogo id={team.id} className="center"/>
         <h1 className="medium-header">{team.name}</h1>
-        <Link to="/"><h4 style={{margin: "5px"}}>View Roster</h4></Link>
+        <Link to={`/players?teamId=${team.id}`}><h4 style={{margin: "5px"}}>View Roster</h4></Link>
         <div>
           <h4 className="text-center">Championships</h4>
           <ul className="championships">
