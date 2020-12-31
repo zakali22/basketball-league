@@ -25,7 +25,7 @@ class Loading extends Component {
 
   render(){
     return (
-      <h3 className="text-center">{this.state.loading}</h3>
+      <h4 className="text-center">{this.state.loading}</h4>
     )
   }
 }

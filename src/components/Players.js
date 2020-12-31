@@ -43,7 +43,7 @@ export default class Players extends Component {
 			<Sidebar title="Players" list={this.state.players} type="player">
 					<Switch>
 						<Route path={`/players/:playerId`} exact render={(routeProps) => <Player {...routeProps} />} />
-						<Route render={() => <h2>Select a player</h2>} />
+						<Route render={() => <h4>Select a player</h4>} />
 					</Switch>
 			</Sidebar>
 		)

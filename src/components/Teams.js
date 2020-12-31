@@ -26,7 +26,7 @@ export default class Teams extends Component {
 			<Sidebar title="Teams" list={this.state.teams} type="teams">
 					<Switch>
 						<Route path={`/teams/:teamId`} exact render={(routeProps) => <TeamSummary {...routeProps} />} />
-						<Route render={() => <h2>Select a team</h2>} />
+						<Route render={() => <h4>Select a team</h4>} />
 					</Switch>
 			</Sidebar>
 		)
