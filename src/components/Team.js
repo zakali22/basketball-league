@@ -50,7 +50,7 @@ class Team extends Component {
       <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
         <TeamLogo id={team.id} className="center"/>
         <h1 className="medium-header">{team.name}</h1>
-        <Link to="/"><h4 style={{margin: "5px"}}>View Roster</h4></Link>
+        <Link to={`/players?teamId=${team.id}`}><h4 style={{margin: "5px"}}>View Roster</h4></Link>
         <div>
           <h4 className="text-center">Championships</h4>
           <ul className="championships">
